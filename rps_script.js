@@ -1,5 +1,5 @@
-const WELCOME_MESSAGE = `Welcome to Rock-Paper-Scissors! Best out of ${NUM_ROUNDS}, let's go!!`;
 const NUM_ROUNDS = 5;
+const WELCOME_MESSAGE = `Welcome to Rock-Paper-Scissors! Best out of ${NUM_ROUNDS}, let's go!!`;
 
 // List of possible moves
 const MOVES = ['Rock', 'Paper', 'Scissors'];
