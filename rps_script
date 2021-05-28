@@ -1,0 +1,70 @@
+const MOVES = ['rock', 'paper', 'scissors'];
+const ROCK = MOVES.indexOf('rock');
+const PAPER = MOVES.indexOf('paper');
+const SCISSORS = MOVES.indexOf('scissors');
+
+const PLAYER_WIN = 0;
+const COMPUTER_WIN = 1;
+const TIE = 2;
+
+const PLAYER_WIN_MESSAGE = (playerMove, computerMove) => 
+    `You win this round! ${MOVES[playerMove]} beats ${MOVES[computerMove]}!`
+const COMPUTER_WIN_MESSAGE = (playerMove, computerMove) => 
+    `Computer wins this round! ${MOVES[computerMove]} beats ${MOVES[playerMove]}!`
+const TIE_MESSAGE = "It's a tie! Play again.";
+
+// Computer returns the index of a random move.
+function computerPlay() {
+    let randomIndex = Math.floor(Math.random() * MOVES.length);
+    return randomIndex;
+}
+
+// Given the moves of player and computer:
+// Returns constant: PLAYER_WIN, COMPUTER_WIN, or TIE
+// Prints out appropriate message
+function playRound(playerMove, computerMove) {
+    if (playerMove === computerMove) {
+        console.log(TIE_MESSAGE);
+        return TIE;
+    }
+    else if (playerMove === ROCK) {
+        switch (computerMove) {
+            case PAPER:
+                console.log(COMPUTER_WIN_MESSAGE(playerMove,computerMove));
+                return COMPUTER_WIN;
+            case SCISSORS:
+                console.log(PLAYER_WIN_MESSAGE(playerMove, computerMove));
+                return PLAYER_WIN;
+        }  
+    }
+    else if (playerMove === PAPER) {
+        switch (computerMove) {
+            case ROCK:
+                console.log(PLAYER_WIN_MESSAGE(playerMove, computerMove));
+                return PLAYER_WIN;
+            case SCISSORS:
+                console.log(COMPUTER_WIN_MESSAGE(playerMove,computerMove));
+                return COMPUTER_WIN;
+        }
+    }
+    else if (playerMove === SCISSORS) {
+        switch (computerMove) {
+            case ROCK:
+                console.log(COMPUTER_WIN_MESSAGE(playerMove,computerMove));
+                return COMPUTER_WIN;
+            case PAPER:
+                console.log(PLAYER_WIN_MESSAGE(playerMove, computerMove));
+                return PLAYER_WIN;
+        }
+    }
+}
+
+// Returns true if player won, false if computer won.
+function checkRoundWinner(playerMove, computerMove) {
+
+}
+
+// Testing functionality
+for (let index = 0; index < 5; index++) {
+    console.log(playRound(2, computerPlay()));
+}
