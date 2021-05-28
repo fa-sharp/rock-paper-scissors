@@ -1,3 +1,7 @@
+const WELCOME_MESSAGE = `Welcome to Rock-Paper-Scissors! Best out of ${NUM_ROUNDS}, let's go!!`;
+const NUM_ROUNDS = 5;
+
+// List of possible moves
 const MOVES = ['Rock', 'Paper', 'Scissors'];
 const ROCK = MOVES.indexOf('Rock');
 const PAPER = MOVES.indexOf('Paper');
@@ -7,8 +11,6 @@ const SCISSORS = MOVES.indexOf('Scissors');
 const PLAYER_WIN = 0;
 const COMPUTER_WIN = 1;
 const TIE = 2;
-
-const WELCOME_MESSAGE = "Welcome to Rock-Paper-Scissors! Best out of 5, let's go!!";
 
 // Messages for each round
 const PLAYER_ROUND_WIN_MESSAGE = (playerMove, computerMove) => 
@@ -20,7 +22,7 @@ const INVALID_INPUT_MESSAGE = "Invalid move! Try again.";
 
 // Messages for end of game
 const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
-const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!"
+const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
 
 
 // Gets and validates player move: returns ROCK, PAPER, or SCISSORS
@@ -86,13 +88,14 @@ function playRound(playerMove, computerMove) {
 }
 
 
-// Five rounds. In the case of a tie or invalid input, player asked for another move.
+// A game of several rounds. In the case of a tie or invalid input,
+// player is asked for another move.
 function game() {
     console.log(WELCOME_MESSAGE);
     
     let playerScore = 0, computerScore = 0;
 
-    for (let round = 1; round <= 5; round++) {
+    for (let round = 1; round <= NUM_ROUNDS; round++) {
         let playerMove, computerMove, roundStatus;
         
         // Play a round. If there's a tie, try again.
@@ -103,6 +106,7 @@ function game() {
         } 
         while (roundStatus === TIE)
 
+        // Increment the score for whoever won this round.
         switch (roundStatus) {
             case COMPUTER_WIN:
                 computerScore++;
@@ -118,7 +122,7 @@ function game() {
         printRoundScore(round);
     }
 
-
+    // Print out winner of this game
     if (playerScore > computerScore)
         console.log(PLAYER_GAME_WIN_MESSAGE);
     else
