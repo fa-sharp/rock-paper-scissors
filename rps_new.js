@@ -1,11 +1,11 @@
 const NUM_ROUNDS = 5;
 const WELCOME_MESSAGE = `Welcome to Rock-Paper-Scissors! Best out of ${NUM_ROUNDS}, let's go!!`;
 
-// List of possible moves
-const MOVES = ['Rock', 'Paper', 'Scissors'];
-const ROCK = MOVES.indexOf('Rock');
-const PAPER = MOVES.indexOf('Paper');
-const SCISSORS = MOVES.indexOf('Scissors');
+// List of possible moves (not a proper Enum)
+const MOVES = {rock: 'Rock', paper: 'Paper', scissors: 'Scissors'};
+const ROCK = 'rock';
+const PAPER = 'paper';
+const SCISSORS = 'scissors';
 
 // Possible statuses for each round
 const PLAYER_WIN = 1;
@@ -27,7 +27,7 @@ const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
 
 // Event listener for player move. Gets computer move and plays a round.
 onPlayerMove = (event) => {
-    let playerMove = MOVES.indexOf(event.currentTarget.value);
+    let playerMove = event.currentTarget.value;
     let computerMove = getComputerMove();
 
     console.log("You played " + MOVES[playerMove]);
@@ -40,29 +40,15 @@ document.querySelectorAll(".move-button").forEach(moveButton => {
     moveButton.addEventListener("click", onPlayerMove)
 });
 
-// Gets and validates player move: returns ROCK, PAPER, or SCISSORS
-function getPlayerMove() {
-    while (true) {
-        let playerInput = prompt("Your move: ").trim().toUpperCase();
-        let playerMove = MOVES.findIndex(move =>
-                move.toUpperCase() === playerInput);
-
-        // If valid input, return the move. Otherwise, will prompt the user again.
-        if (playerMove != -1) {
-            return playerMove;
-        }
-        else
-            console.log(INVALID_INPUT_MESSAGE);
-    }
-}
 
 // Gets computer's move: returns random move of ROCK, PAPER, or SCISSORS
+const MOVES_keys = Object.keys(MOVES);
 function getComputerMove() {
-    let randomIndex = Math.floor(Math.random() * MOVES.length);
-    return randomIndex;
+    let randomIndex = Math.floor(Math.random() * MOVES_keys.length);
+    return MOVES_keys[randomIndex];
 }
 
-// Given the moves of player and computer:
+// Core game logic. Given the moves of player and computer:
 // Returns status PLAYER_WIN, COMPUTER_WIN, or TIE
 // Prints out appropriate message
 function playRound(playerMove, computerMove) {
