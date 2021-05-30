@@ -1,0 +1,35 @@
+body {
+    height: 100vh;
+}
+
+#player-moves {
+    display: flex;
+}
+
+.move-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 1.3em;
+    font-weight: 700;
+
+    margin: 0 1rem;
+}
+  
+.move-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 4rem;
+    cursor: pointer;
+    outline: inherit;
+    transition: transform 100ms linear;
+}
+#rock-button {color: dodgerblue;}
+#paper-button {color: violet;}
+#scissors-button {color: yellowgreen;}
+
+.move-button:hover {
+    transform: rotate(10deg);
+}

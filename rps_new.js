@@ -25,6 +25,21 @@ const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
 const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
 
 
+// Event listener for player move. Gets computer move and plays a round.
+onPlayerMove = (event) => {
+    let playerMove = MOVES.indexOf(event.currentTarget.value);
+    let computerMove = getComputerMove();
+
+    console.log("You played " + MOVES[playerMove]);
+    console.log("Computer played " + MOVES[computerMove]);
+
+    playRound(playerMove, computerMove);
+}
+
+document.querySelectorAll(".move-button").forEach(moveButton => {
+    moveButton.addEventListener("click", onPlayerMove)
+});
+
 // Gets and validates player move: returns ROCK, PAPER, or SCISSORS
 function getPlayerMove() {
     while (true) {
@@ -136,4 +151,4 @@ function game() {
 }
 
 // Testing functionality
-game();
+// game();

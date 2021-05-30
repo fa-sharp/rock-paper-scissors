@@ -1,1 +1,48 @@
-<script src="rps_script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Rock, Paper, Scissors!</title>
+</head>
+<body>
+    <section>
+        <h1>Round 1</h1>
+        <h2>Choose a move: </h2>
+        <div id="player-moves">
+            <div class="move-choice">
+                <button id="rock-button" value="Rock" class="move-button" aria-label="Play Rock" title="Play Rock">
+                    <i aria-hidden="true" class="fas fa-hand-rock"></i>
+                </button>Rock
+            </div>
+            <div class="move-choice">
+                <button id="paper-button" value="Paper" class="move-button" aria-label="Play Paper" title="Play Paper">
+                    <i aria-hidden="true" class="fas fa-hand-paper"></i>
+                </button>Paper
+            </div>
+            <div class="move-choice">
+                <button id="scissors-button" value="Scissors" class="move-button" aria-label="Play Scissors" title="Play Scissors">
+                    <i aria-hidden="true" class="fas fa-hand-scissors"></i>
+                </button>Scissors
+            </div>
+        </div>
+    </section>
+    <section>
+        <h3>You played: <span id="player-move-display"></span></h3>
+        <h3>Computer played: <span id="computer-move-display"></span></h3>
+        <h3><span id="round-result-display"></span></h3>
+        <br>
+        <h2>Score</h2>
+        <h3>You: <span id="player-score-display"></span></h3>
+        <h3>Computer: <span id="computer-score-display"></span></h3>
+    </section>
+</body>
+</html>
+
+<script src="rps_new.js"></script>
