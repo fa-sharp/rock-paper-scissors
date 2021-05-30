@@ -2,10 +2,10 @@ const NUM_ROUNDS = 5;
 const WELCOME_MESSAGE = `Welcome to Rock-Paper-Scissors! Best out of ${NUM_ROUNDS}, let's go!!`;
 
 // List of possible moves (not a proper Enum)
-const MOVES = {rock: 'Rock', paper: 'Paper', scissors: 'Scissors'};
-const ROCK = 'rock';
-const PAPER = 'paper';
-const SCISSORS = 'scissors';
+const MOVES = {1: 'Rock', 2: 'Paper', 3: 'Scissors'};
+const ROCK = 1;
+const PAPER = 2;
+const SCISSORS = 3;
 
 // Possible statuses for each round
 const PLAYER_WIN = 1;
@@ -27,7 +27,7 @@ const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
 
 // Event listener for player move. Gets computer move and plays a round.
 onPlayerMove = (event) => {
-    let playerMove = event.currentTarget.value;
+    let playerMove = parseInt(event.currentTarget.value);
     let computerMove = getComputerMove();
 
     console.log("You played " + MOVES[playerMove]);
@@ -36,6 +36,7 @@ onPlayerMove = (event) => {
     playRound(playerMove, computerMove);
 }
 
+// Add click event listener to each button
 document.querySelectorAll(".move-button").forEach(moveButton => {
     moveButton.addEventListener("click", onPlayerMove)
 });
@@ -45,13 +46,15 @@ document.querySelectorAll(".move-button").forEach(moveButton => {
 const MOVES_keys = Object.keys(MOVES);
 function getComputerMove() {
     let randomIndex = Math.floor(Math.random() * MOVES_keys.length);
-    return MOVES_keys[randomIndex];
+    return parseInt(MOVES_keys[randomIndex]);
 }
 
 // Core game logic. Given the moves of player and computer:
 // Returns status PLAYER_WIN, COMPUTER_WIN, or TIE
 // Prints out appropriate message
 function playRound(playerMove, computerMove) {
+  console.log(playerMove);
+  console.log(computerMove);
     if (playerMove === computerMove) {
         console.log(TIE_MESSAGE);
         return TIE;
