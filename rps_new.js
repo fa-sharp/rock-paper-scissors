@@ -62,7 +62,7 @@ const COMPUTER_ROUND_WIN_MESSAGE = (playerMove, computerMove) =>
     `Computer wins this round! ${MOVES[computerMove]} beats ${MOVES[playerMove]}!`;
 const TIE_MESSAGE = "It's a tie! Play again.";
 
-const POINTS_TO_WIN = 5;
+const POINTS_TO_WIN = 3;
 
 // Update the game display based on the latest round
 function updateGame(playerMove, computerMove, roundStatus) {
@@ -93,18 +93,6 @@ function updateGame(playerMove, computerMove, roundStatus) {
     } 
 }
 
-const gameWinDisplay = document.querySelector("#game-win-display");
-const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
-const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
-
-// Displays the winner
-function endGame() {
-    if (playerScore === POINTS_TO_WIN)
-        gameWinDisplay.textContent = PLAYER_GAME_WIN_MESSAGE;
-    else
-        gameWinDisplay.textContent = COMPUTER_GAME_WIN_MESSAGE;
-}
-
 // Score display elements
 const playerScoreDisplay = document.querySelector("#player-score-display");
 const computerScoreDisplay = document.querySelector("#computer-score-display");
@@ -115,8 +103,41 @@ function updateScoreDisplays(playerScore, computerScore) {
     computerScoreDisplay.textContent = computerScore;
 }
 
+// Game display elements and statuses
+const gameWinDisplay = document.querySelector("#game-win-display");
+const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
+const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
+
+// Displays the winner
+function endGame() {
+    if (playerScore === POINTS_TO_WIN)
+        gameWinDisplay.textContent = PLAYER_GAME_WIN_MESSAGE;
+    else
+        gameWinDisplay.textContent = COMPUTER_GAME_WIN_MESSAGE;
+
+    gameWinDisplay.append(createResetButton());
+}
+
+const RESET_BUTTON_TEXT = "Reset Game";
+function createResetButton() {
+    let resetButton = document.createElement("button");
+    resetButton.id = "reset-button";
+    resetButton.textContent = RESET_BUTTON_TEXT;
+    resetButton.addEventListener("click", resetGame);
+    
+    return resetButton;
+}
+
 // Reset/initialize scores and displays
 function resetGame() {
+    playerMoveDisplay.textContent = "";
+    computerMoveDisplay.textContent = "";
+    roundResultDisplay.textContent = "";
+
+    gameWinDisplay.textContent = "";
+    let resetButton = document.querySelector("#reset-button") ? 
+        resetButton.remove() : null;
+
     playerScore = 0;
     computerScore = 0;
     updateScoreDisplays(playerScore, computerScore);
@@ -146,54 +167,3 @@ function getComputerMove() {
     let randomIndex = Math.floor(Math.random() * MOVES_keys.length);
     return parseInt(MOVES_keys[randomIndex]);
 }
-
-
-// A game of several rounds. In the case of a tie or invalid input,
-// player is asked for another move.
-// function game() {
-//     console.log(WELCOME_MESSAGE);
-    
-//     let playerScore = 0, computerScore = 0;
-
-//     for (let round = 1; round <= NUM_ROUNDS; round++) {
-//         let playerMove, computerMove, roundStatus;
-        
-//         // Play a round. If there's a tie, try again.
-//         do {
-//             playerMove = getPlayerMove();
-//             computerMove = getComputerMove();
-//             roundStatus = playRound(playerMove, computerMove);
-//         } 
-//         while (roundStatus === TIE)
-
-//         // Increment the score for whoever won this round.
-//         switch (roundStatus) {
-//             case COMPUTER_WIN:
-//                 computerScore++;
-//                 break;
-//             case PLAYER_WIN:
-//                 playerScore++;
-//                 break;
-//             default:
-//                 console.error("Error! Neither player or computer won :(");
-//         }
-        
-//         // Print out score as of this round:
-//         printRoundScore(round);
-//     }
-
-//     // Print out winner of this game
-//     if (playerScore > computerScore)
-//         console.log(PLAYER_GAME_WIN_MESSAGE);
-//     else
-//         console.log(COMPUTER_GAME_WIN_MESSAGE);
-
-    
-//     function printRoundScore(round) {
-//         console.log(
-//             `ROUND ${round}: \nPlayer: ${playerScore}\nComputer: ${computerScore}\n\n`);
-//     }
-// }
-
-// Testing functionality
-// game();

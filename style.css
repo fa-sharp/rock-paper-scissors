@@ -35,7 +35,15 @@ body {
 }
 
 #game-win-display {
+    display: flex;
+
     font-weight: 700;
     font-size: 2rem;
     color: chocolate;
+}
+
+#reset-button {
+    margin: 0 2rem;
+    padding: 0 1rem;
+    font-size: 1.1rem;
 }
