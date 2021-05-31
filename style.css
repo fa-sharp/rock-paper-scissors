@@ -1,12 +1,34 @@
 body {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+section {
+    padding: .5em;
+    margin: .5em;
+}
+@media screen and (min-width: 600px) {
+    body {
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 13px;
+    }
 }
 
-#player-moves {
+/* Player Move Section */
+
+section#player-move-section {
+    border: solid 1px black;
+}
+
+div#player-moves {
     display: flex;
 }
 
-.move-choice {
+div#player-moves .move-choice {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,33 +39,54 @@ body {
     margin: 0 1rem;
 }
   
-.move-button {
+button.move-button {
     background: none;
     border: none;
     padding: 0;
-    font-size: 4rem;
+    font-size: 3em;
     cursor: pointer;
     outline: inherit;
     transition: transform 100ms linear;
 }
-#rock-button {color: dodgerblue;}
-#paper-button {color: violet;}
-#scissors-button {color: yellowgreen;}
-
-.move-button:hover {
+button.move-button:hover {
     transform: scale(1.1);
 }
 
-#game-win-display {
+button#rock-button {color: dodgerblue;}
+button#paper-button {color: violet;}
+button#scissors-button {color: yellowgreen;}
+
+/* Round result section */
+section#round-result-section {
+    border: solid 1px black;
+}
+
+span#player-move-display {
+    color: forestgreen;
+}
+
+span#computer-move-display {
+    color: firebrick;
+}
+
+/* Game score/win display section */
+
+section#score-section {
+    border: solid 1px black;
+    flex-shrink: 2;
+}
+
+div#game-win-display {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2em;
     color: chocolate;
 }
 
-#reset-button {
-    margin: 0 2rem;
-    padding: 0 1rem;
-    font-size: 1.1rem;
+button#reset-button {
+    padding: .3em;
+    font-size: .6em;
 }

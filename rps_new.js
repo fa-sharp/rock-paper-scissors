@@ -106,7 +106,7 @@ function updateScoreDisplays(playerScore, computerScore) {
 // Game display elements and statuses
 const gameWinDisplay = document.querySelector("#game-win-display");
 const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
-const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!! MUAHAHAHA!!";
+const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!!";
 
 // Displays the winner
 function endGame() {
@@ -142,9 +142,9 @@ function resetGame() {
     computerScore = 0;
     updateScoreDisplays(playerScore, computerScore);
 }
-resetGame();
+resetGame(); // Initial call to set scores to 0
 
-// Event listener for player move. Gets computer move and plays a round.
+// Event listener for clicking a move button. Also gets computer move and then calls playRound.
 onPlayerMove = (event) => {
     let playerMove = parseInt(event.currentTarget.value);
     let computerMove = getComputerMove();
