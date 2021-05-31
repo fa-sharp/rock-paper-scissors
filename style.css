@@ -31,5 +31,11 @@ body {
 #scissors-button {color: yellowgreen;}
 
 .move-button:hover {
-    transform: rotate(10deg);
+    transform: scale(1.1);
+}
+
+#game-win-display {
+    font-weight: 700;
+    font-size: 2rem;
+    color: chocolate;
 }
