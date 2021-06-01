@@ -4,6 +4,8 @@ body {
     flex-direction: column;
 }
 section {
+    border: solid 1px black;
+
     padding: .5em;
     margin: .5em;
 }
@@ -21,14 +23,14 @@ section {
 /* Player Move Section */
 
 section#player-move-section {
-    border: solid 1px black;
+    
 }
 
-div#player-moves {
+#player-moves {
     display: flex;
 }
 
-div#player-moves .move-choice {
+#player-moves .move-choice {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,23 +44,29 @@ div#player-moves .move-choice {
 button.move-button {
     background: none;
     border: none;
-    padding: 0;
-    font-size: 3em;
-    cursor: pointer;
     outline: inherit;
+    cursor: pointer;
+
+    font-size: 3em;    
+    padding: 0;
+
     transition: transform 100ms linear;
 }
 button.move-button:hover {
     transform: scale(1.1);
 }
 
-button#rock-button {color: dodgerblue;}
-button#paper-button {color: violet;}
-button#scissors-button {color: yellowgreen;}
+/* Move button colors */
+#rock-button {color: dodgerblue;}
+#paper-button {color: violet;}
+#scissors-button {color: yellowgreen;}
+#rock-button.disabled, #paper-button.disabled, #scissors-button.disabled {
+    color: gray;
+}
 
 /* Round result section */
 section#round-result-section {
-    border: solid 1px black;
+    
 }
 
 span#player-move-display {
@@ -72,7 +80,6 @@ span#computer-move-display {
 /* Game score/win display section */
 
 section#score-section {
-    border: solid 1px black;
     flex-shrink: 2;
 }
 

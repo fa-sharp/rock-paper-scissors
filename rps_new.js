@@ -7,6 +7,20 @@ const SCISSORS = 3;
 // Track player and computer scores
 let playerScore, computerScore;
 
+// Event listener for clicking a move button. Also gets computer move and then calls playRound.
+onPlayerMove = (event) => {
+    let playerMove = parseInt(event.currentTarget.value);
+    let computerMove = getComputerMove();
+
+    playRound(playerMove, computerMove);
+}
+
+// Add click event listener to each move button
+const moveButtons = document.querySelectorAll(".move-button");
+moveButtons.forEach(moveButton => {
+    moveButton.addEventListener("click", onPlayerMove)
+});
+
 // Possible statuses for each round
 const PLAYER_WIN = 1;
 const COMPUTER_WIN = 2;
@@ -17,7 +31,6 @@ const TIE = 3;
 // 2. Calls updateGame to update game display
 function playRound(playerMove, computerMove) {
     if (playerMove === computerMove) {
-        console.log(TIE_MESSAGE);
         updateGame(playerMove,computerMove,TIE);
         return TIE;
     }
@@ -108,13 +121,17 @@ const gameWinDisplay = document.querySelector("#game-win-display");
 const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
 const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!!";
 
-// Displays the winner
+// Displays the winner and disables move buttons
 function endGame() {
     if (playerScore === POINTS_TO_WIN)
         gameWinDisplay.textContent = PLAYER_GAME_WIN_MESSAGE;
     else
         gameWinDisplay.textContent = COMPUTER_GAME_WIN_MESSAGE;
 
+    moveButtons.forEach(moveButton => {
+        moveButton.classList.add("disabled");
+        moveButton.disabled = true;
+    });
     gameWinDisplay.append(createResetButton());
 }
 
@@ -128,7 +145,7 @@ function createResetButton() {
     return resetButton;
 }
 
-// Reset/initialize scores and displays
+// Reset/initialize scores, buttons, and round results
 function resetGame() {
     playerMoveDisplay.textContent = "";
     computerMoveDisplay.textContent = "";
@@ -138,28 +155,16 @@ function resetGame() {
     let resetButton = document.querySelector("#reset-button") ? 
         resetButton.remove() : null;
 
+    moveButtons.forEach(moveButton => {
+        moveButton.classList.remove("disabled");
+        moveButton.disabled = false;
+    });
+
     playerScore = 0;
     computerScore = 0;
     updateScoreDisplays(playerScore, computerScore);
 }
 resetGame(); // Initial call to set scores to 0
-
-// Event listener for clicking a move button. Also gets computer move and then calls playRound.
-onPlayerMove = (event) => {
-    let playerMove = parseInt(event.currentTarget.value);
-    let computerMove = getComputerMove();
-
-    console.log("You played " + MOVES[playerMove]);
-    console.log("Computer played " + MOVES[computerMove]);
-
-    playRound(playerMove, computerMove);
-}
-
-// Add click event listener to each move button
-document.querySelectorAll(".move-button").forEach(moveButton => {
-    moveButton.addEventListener("click", onPlayerMove)
-});
-
 
 // Gets computer's move: returns random move of ROCK, PAPER, or SCISSORS
 const MOVES_keys = Object.keys(MOVES);
