@@ -13,7 +13,7 @@
 </head>
 <body>
     <section id="player-move-section">
-        <h2>Choose a move: </h2>
+        <h2>Your Move</h2>
         <div id="player-moves">
             <div class="move-choice">
                 <button id="rock-button" value=1 class="move-button" aria-label="Play Rock" title="Play Rock">
@@ -33,17 +33,23 @@
         </div>
     </section>
     <section id="round-result-section">
-        <br>
+        <h2>Round Results</h2>
         <h4>You played: <span id="player-move-display"></span></h4>
         <h4>Computer played: <span id="computer-move-display"></span></h4>
-        <p><div id="round-result-display"></div></p>
+        <p><div id="round-result-display">--Results displayed here after each round--</div></p>
         <br>
     </section>
     <section id="score-section">
+        <h2>Score</h2>
         <div id="game-win-display"></div>
-        <h2><u>Score</u></h2>
         <h3>You: <span id="player-score-display"></span></h3>
         <h3>Computer: <span id="computer-score-display"></span></h3>
+    </section>
+    <section id="settings-section">
+        <h3>Settings</h3>
+        <label for="points-setting">Points to win (3-6):</label>
+            <input type="number" id="points-setting" name="points-setting"
+            value="3" min="3" max="6">
     </section>
 </body>
 </html>

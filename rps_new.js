@@ -75,7 +75,8 @@ const COMPUTER_ROUND_WIN_MESSAGE = (playerMove, computerMove) =>
     `Computer wins this round! ${MOVES[computerMove]} beats ${MOVES[playerMove]}!`;
 const TIE_MESSAGE = "It's a tie! Play again.";
 
-const POINTS_TO_WIN = 3;
+const DEFAULT_POINTS_TO_WIN = 3;
+let pointsToWin = DEFAULT_POINTS_TO_WIN;
 
 // Update the game display based on the latest round
 function updateGame(playerMove, computerMove, roundStatus) {
@@ -100,8 +101,8 @@ function updateGame(playerMove, computerMove, roundStatus) {
 
     updateScoreDisplays(playerScore, computerScore);
 
-    // If player or computer has reached POINTS_TO_WIN, end the game
-    if (playerScore === POINTS_TO_WIN || computerScore === POINTS_TO_WIN) {
+    // If player or computer has reached winning points, end the game
+    if (playerScore === pointsToWin || computerScore === pointsToWin) {
         endGame();
     } 
 }
@@ -123,7 +124,7 @@ const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!!";
 
 // Displays the winner, disables move buttons, and creates a reset button
 function endGame() {
-    if (playerScore === POINTS_TO_WIN)
+    if (playerScore === pointsToWin)
         gameWinDisplay.textContent = PLAYER_GAME_WIN_MESSAGE;
     else
         gameWinDisplay.textContent = COMPUTER_GAME_WIN_MESSAGE;
@@ -149,7 +150,7 @@ function createResetButton() {
 function resetGame() {
     playerMoveDisplay.textContent = "";
     computerMoveDisplay.textContent = "";
-    roundResultDisplay.textContent = "";
+    roundResultDisplay.textContent = "--Results displayed here after each round--";
 
     gameWinDisplay.textContent = "";
     let resetButton = document.querySelector("#reset-button") ? 
@@ -172,3 +173,23 @@ function getComputerMove() {
     let randomIndex = Math.floor(Math.random() * MOVES_keys.length);
     return parseInt(MOVES_keys[randomIndex]);
 }
+
+// Change number of points needed to win
+const MIN_POINTS = 3;
+const MAX_POINTS = 6;
+changePointsToWin = (event) => {
+    let newPointsToWin = parseInt(event.target.value);
+    if (playerScore > 0 || computerScore > 0) { // Check if already in middle of game
+        event.target.value = pointsToWin;
+        alert("Can't change this setting in middle of gameplay!");
+    }
+    else if (MIN_POINTS <= newPointsToWin && newPointsToWin <= MAX_POINTS) {
+        event.target.value = newPointsToWin;
+        pointsToWin = newPointsToWin;
+    } else
+        event.target.value = pointsToWin;
+}
+
+// Attach listener for changing points setting
+const pointsSettingInput = document.querySelector("#points-setting");
+pointsSettingInput.addEventListener("change",changePointsToWin);
