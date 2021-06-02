@@ -1,4 +1,4 @@
-// List of possible moves (not a proper Enum)
+// List of possible moves. Keys 1,2,3 are tied to the move-buttons in index.html
 const MOVES = {1: 'Rock', 2: 'Paper', 3: 'Scissors'};
 const ROCK = 1;
 const PAPER = 2;
@@ -9,6 +9,7 @@ let playerScore, computerScore;
 
 // Event listener for clicking a move button. Also gets computer move and then calls playRound.
 onPlayerMove = (event) => {
+    // These moves should be in the form 1, 2, or 3 - corresponding to constants ROCK/PAPER/SCISSORS
     let playerMove = parseInt(event.currentTarget.value);
     let computerMove = getComputerMove();
 
@@ -22,9 +23,9 @@ moveButtons.forEach(moveButton => {
 });
 
 // Possible statuses for each round
-const PLAYER_WIN = 1;
-const COMPUTER_WIN = 2;
-const TIE = 3;
+const PLAYER_WIN = 101;
+const COMPUTER_WIN = 102;
+const TIE = 103;
 
 // Core game logic. Given the moves of player and computer:
 // 1. Determines status PLAYER_WIN, COMPUTER_WIN, or TIE
@@ -32,7 +33,6 @@ const TIE = 3;
 function playRound(playerMove, computerMove) {
     if (playerMove === computerMove) {
         updateGame(playerMove,computerMove,TIE);
-        return TIE;
     }
     else if (playerMove === ROCK) {
         switch (computerMove) {
@@ -121,7 +121,7 @@ const gameWinDisplay = document.querySelector("#game-win-display");
 const PLAYER_GAME_WIN_MESSAGE = "YOU WIN!!";
 const COMPUTER_GAME_WIN_MESSAGE = "COMPUTER WINS!!";
 
-// Displays the winner and disables move buttons
+// Displays the winner, disables move buttons, and creates a reset button
 function endGame() {
     if (playerScore === POINTS_TO_WIN)
         gameWinDisplay.textContent = PLAYER_GAME_WIN_MESSAGE;
