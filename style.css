@@ -14,16 +14,19 @@ section {
         flex-wrap: wrap;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     body {
         font-size: 13px;
     }
+    /* section {
+      max-width: 250px;
+    } */
 }
 
 /* Player Move Section */
 
 section#player-move-section {
-    
+  
 }
 
 #player-moves {
@@ -66,7 +69,7 @@ button.move-button:hover {
 
 /* Round result section */
 section#round-result-section {
-    
+  
 }
 
 span#player-move-display {
@@ -80,7 +83,7 @@ span#computer-move-display {
 /* Game score/win display section */
 
 section#score-section {
-    flex-shrink: 2;
+    
 }
 
 div#game-win-display {
